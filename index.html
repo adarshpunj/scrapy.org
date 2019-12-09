@@ -47,7 +47,7 @@ class BlogSpider(scrapy.Spider):
         for title in response.css('.post-header>h2'):
             yield {'title': title.css('a ::text').get()}
 
-        for next_page in response.css('div.prev-post > a'):
+        for next_page in response.css('a.next-posts-link'):
             yield response.follow(next_page, self.parse)
 {% endhighlight %}EOF
 <span class="prompt" onselectstart="return false"><i class="fa fa-dollar"></i></span> scrapy runspider myspider.py
@@ -128,7 +128,7 @@ https://app.scrapinghub.com/p/26731/job/1/8</span>
     <div class="block-right">
       <h2>Want to know more?</h2>
       <ul>
-        <li><a href="http://docs.scrapy.org/en/{{ stable.version }}/intro/overview.html">- Discover Scrapy at a glance</a></li>
+        <li><a href="http://docs.scrapy.org/en/{{ stable.rtd }}/intro/overview.html">- Discover Scrapy at a glance</a></li>
         <li><a href="../companies/">- Meet the companies using Scrapy</a></li>
       </ul>
 
